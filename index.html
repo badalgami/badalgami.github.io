@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Badal Gami Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+
+
+
+<style>
+
+
+.about-mf .box-shadow-full {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.about-mf .about-img {
+  margin-bottom: 2rem;
+}
+
+.about-mf .about-img img {
+  margin-left: 10px;
+}
+
+
+.skill-mf .progress {
+  /* background-color: #cde1f8; */
+  margin: .5rem 0 1.2rem 0;
+  border-radius: 0;
+  height: .7rem;
+}
+
+.skill-mf .progress .progress-bar {
+  height: .7rem;
+  background-color: #ffbd39;
+}
+
+
+/* Animation styles */
+#typing-animation {
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 3s steps(20, end) infinite;
+}
+
+#typing-animation:before {
+  content: "";
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #ccc;
+  animation: typing-cursor 0.5s ease-in-out infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes typing-cursor {
+  from {
+    width: 5px;
+  }
+  to {
+    width: 0;
+  }
+}
+
+
+/* project image zoom effect */
+
+.zoom-effect {
+  overflow: hidden;
+  transition: transform 0.3s ease-out;
+}
+
+.zoom-effect:hover {
+  transform: scale(1.1);
+}
+
+
+</style>
+
+
+  </head>
+  <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+	  
+	  
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar ftco-navbar-light site-navbar-target" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Badal Gami</a>
+	      <button class="navbar-toggler js-fh5co-nav-toggle fh5co-nav-toggle" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav nav ml-auto">
+	          <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
+	          <li class="nav-item"><a href="#about-section" class="nav-link"><span>About Me</span></a></li>
+	          <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Publications</span></a></li>
+	          <li class="nav-item"><a href="#project-section" class="nav-link"><span>Projects</span></a></li>
+			  <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+	          <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+	  <section id="home-section" class="hero">
+		  <div class="home-slider  owl-carousel">
+	       <div class="slider-item ">
+	      	<div class="overlay"></div>
+	         <div class="container">
+	          <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end" data-scrollax-parent="true">
+	          	<div class="one-third js-fullheight order-md-last img" style="background-image:url(images/gami1.png);">
+	          	 <div class="overlay"></div>
+	          	</div>
+		          <div class="one-forth d-flex  align-items-center ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+		          	<div class="text">
+		          		<span class="subheading">Hello!</span>
+			            <h1 class="mb-4 mt-3">I'm <span>Badal Gami</span></h1>
+
+						<!-- Element to contain animated typing -->
+						<span id="typing-animation"></span>
+
+						<script>
+
+						// Initialize the typing animation
+						const typingAnimationElement = document.getElementById('typing-animation');
+
+						// Create an array of typing text
+						const typingTexts = [
+						'Computer Engineer',
+						'AI Researcher',
+						'Data Science Enthusiast  ',
+						];
+
+						// Create a function to display the typing animation for a given text
+						function playTypingAnimation(text) {
+						// Loop through each character and add it to the element
+						for (let i = 0; i < text.length; i++) {
+							setTimeout(() => {
+							typingAnimationElement.textContent += text[i];
+							}, i * 200); // Increase the delay to slow down the typing animation
+						}
+
+						// Once the animation is complete, reset the text and start over
+						setTimeout(() => {
+							typingAnimationElement.textContent = '';
+							playTypingAnimation(typingTexts[(typingTexts.indexOf(text) + 1) % typingTexts.length]);
+						}, text.length * 200);
+						}
+
+						// Start the typing animation loop
+						playTypingAnimation(typingTexts[0]);
+
+						</script>
+
+						<br>
+						<br>
+			            <h2>AI Researcher</h2>
+						<!-- <h2 class="d-flex" style="margin-bottom: 0">With over 5 years of experience</h2> -->
+						<!-- <br> -->
+			            <p><a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="btn btn-primary py-3 px-4">Google Scholar</a> 
+							<a href="https://github.com/badalgami" class="btn btn-white btn-outline-white py-3 px-4">My works</a></p>
+		            </div>
+		          </div>
+	        	</div>
+	        </div>
+	      </div>
+		</div>
+    </section>
+
+	<section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-8 text-center">
+					<div class="row justify-content-center mb-5">
+						<div class="col-md-12 heading-section ftco-animate">
+							<h1 class="big">About Me</h1>
+							<h2 class="mb-4">About Me</h2>
+							<p>I'm a recent computer engineering graduate from Delhi Technological University, class of 2023, with a strong focus on machine learning, data science, and artificial intelligence(AI). My current research interests lie at the intersection of machine learning and neuromorphic computing, aiming to develop trustworthy machine learning algorithms. I'm enthusiastic about exploring the potential of neuromorphic computing in enhancing the reliability and efficiency of machine learning models.</p>
+							<ul class="about-info mt-4 px-md-0 px-2">
+								<li class="d-flex"><span>Research:</span> <span>Computer Vision, Medical AI &amp; NLP</span></li>
+								<li class="d-flex"><span>Education:</span> <span>Bachelors of Technology in Computer Engineering</span></li>
+								<li class="d-flex"><span>Programming:</span> <span>C, C++ &amp; Python</span></li>
+								<li class="d-flex"><span>AI Skills:</span> <span>Tensorflow, Pandas, NumPy, Matplotlib &amp; Pytorch</span></li>
+								<li class="d-flex"><span>Other Skills:</span> <span>PySpark, Git, HTML, CSS, JavaScript &amp; SQL</span></li>
+								<li class="d-flex"><span>Interest:</span> <span class="ml-auto"> Photography, Trekking</span></li>
+							</ul>
+							<div class="text-center mt-4">
+								<a href="https://www.linkedin.com/in/badal-gami-0523641ba/" class="btn btn-primary py-3 px-3">LinkedIn</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-10 heading-section text-center ftco-animate">
+          	<h1 class="big big-2">Research</h1>
+            <h2 class="mb-4">Research</h2>
+            <p>My research interests lie at the intersection of machine learning and neuromorphic computing, aiming to develop trustworthy machine learning algorithms.</p>
+          </div>
+        </div>
+
+		<div class="row">
+			<h1 class="big-4">Latest Publications</h1>
+			<div class="underline"></div>
+		</div>
+		<br>
+		
+		<div class="row justify-content-center">
+				<div class="col-md-6">
+					<div class="resume-wrap ftco-animate">
+						<h5>Artificial intelligence-based blockchain solutions for intelligent healthcare: A comprehensive review on privacy preserving techniques</h5>
+						<span class="position">Transactions on Emerging Telecommunications Technologies</span>
+						<p class="mt-4">While blockchain technology (BT) is considered secure, there are several vulnerabilities that can breach its security. The study in artificial intelligence (AI) and BT is widely popular due to its expanding importance in enhancing security and computational prowess. In this study, we present a comprehensive and meticulous comprehensive review of AI and BT-based privacy-preserving smart healthcare. The selection for this study was based on a holistic and integrated approach which involved examining not only individual studies but also their relationships, and trends ...
+						</p>
+						<a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4824" class="btn btn-primary py-2 px-3">Read More</a>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+		<br>
+		<br>
+
+		<div class="row justify-content-center">
+			<div class="col-md-6 text-center ftco-animate">
+				<a href="publications.html" class="btn btn-primary py-4 px-5">More Publications</a>
+			</div>
+		</div>
+    </section>
+
+   
+
+    <section class="ftco-section" id="project-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">My Projects</h1>
+            <h2 class="mb-4">My Projects</h2>
+            <p>Some of my projects listed below includes machine learning, deep learning, computer vision, and computer programming. The github link to the projects are provided.</p>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/badalgami/CANCERDETECTOR" class="block-20 zoom-effect" style="background-image: url('images/Cancer-det.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://github.com/badalgami/CANCERDETECTOR"> Early Breast Carcinoma Detection</a></h3>
+                <p>Employed a Gradient Boosting Framework based on feature and statistical engineering to detect early cancer.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="https://github.com/badalgami/Langchain-pdf-reader" class="block-20 zoom-effect" style="background-image: url('images/lang.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://github.com/badalgami/Langchain-pdf-reader">Document Reader using Langchain </a></h3>
+                <p>Used LangChain's capabilities to analyze text content extracted from PDF documents. This project utilizes LangChain's text loaders, embeddings, and language model inference to perform text analysis tasks on PDF documents.
+				</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry">
+              <a href="https://github.com/badalgami/Model-Deployment-Flask" class="block-20 zoom-effect" style="background-image: url('images/Iris.png');">
+              </a>
+              <div class="text mt-3 float-right d-block">
+
+                <h3 class="heading"><a href="https://github.com/badalgami/Model-Deployment-Flask">Model Deployment Using Flask</a></h3>
+                <p>Demonstrated a machine learning pipeline for classifying iris flowers into different species using the famous Iris dataset. The pipeline includes data ingestion, preprocessing, model training, evaluation, and model deployment using Flask.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+	<br>
+		<!-- added justify-content-center to center align the last two projects -->
+		<div class="row d-flex justify-content-center">  
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+				<a href="https://github.com/badalgami/Nepali-language-ml-bert" class="block-20 zoom-effect" style="background-image: url('images/Low_resource.png');">
+				</a>
+				<div class="text mt-3 float-right d-block">
+  
+				  <h3 class="heading"><a href="https://github.com/badalgami/Nepali-language-ml-bert">Low Resource Language Classification Using Bert</a></h3>
+				  <p>Used multiple machine learning models and bert to classify news data in nepali language.</p>
+				</div>
+			  </div>
+			</div>
+			<div class="col-md-4 d-flex ftco-animate">
+				<div class="blog-entry justify-content-end">
+				<a href="https://github.com/badalgami/B-foodie---Food-website" class="block-20 zoom-effect" style="background-image: url('images/Food.gif');">
+				</a>
+				<div class="text mt-3 float-right d-block">
+  
+				  <h3 class="heading"><a href="https://github.com/badalgami/B-foodie---Food-website">Food Website</a></h3>
+				  <p>Developed a fronted of a food website using HTML5 &amp; CSS3
+				  </p>
+				</div>
+			  </div>
+			</div>
+		 </div>
+	  </div>
+    </section>
+
+  <section>
+	  <div class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
+			  <div class="container"> 
+				<div class="row justify-content-center">
+					<div class="col-md-7 ftco-animate text-center">
+						<h2> You can find more works on<span> Github  </span> </h2>
+						<div class="heading"> <h4> I am curious about AI &amp; I love solving AI problems </h4>
+						<br>
+						<p><a href="https://github.com/badalgami" class="btn btn-primary py-3 px-5">GitHub</a></p>
+						</div>
+					</div>
+				</div>
+			 </div> 
+		</div>
+	</section>
+
+
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+      <div class="container">
+      	<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Contact</h1>
+            <h2 class="mb-4">Contact Me</h2>
+            <p>Below are the details to reach out to me!</p>
+          </div>
+        </div>
+
+        <div class="row d-flex contact-info mb-5">
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-map-signs"></span>
+          		</div>
+          		<h3 class="mb-4">Address</h3>
+	            <p>India</p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-phone2"></span>
+          		</div>
+          		<h3 class="mb-4">Contact Number</h3>
+	            <p><a href="tel://0101010101">+ 91 9599049119</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-paper-plane"></span>
+          		</div>
+          		<h3 class="mb-4">Email Address</h3>
+	            <p><a href="mailto:info@yoursite.com">badalgami@gmail.com</a></p>
+	          </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+          	<div class="align-self-stretch box p-4 text-center">
+          		<div class="icon d-flex align-items-center justify-content-center">
+          			<span class="icon-globe"></span>
+          		</div>
+          		<h3 class="mb-4">Download Resume</h3>
+	            <p><a href="#">resumelink</a></p>
+	          </div>
+          </div>
+
+		  <div class="container">
+			<br>
+			<br>
+			<div class="row justify-content-center">
+				<div class="col-md-7 ftco-animate text-center">
+					<h2>Have a<span> Question?  </span> <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEkDg8YwHVi7hvwYWXM0W7TSoS10Ng62Zopmxc4i7UVznHWw/viewform?vc=0&c=0&w=1&flr=0" class="btn btn-primary py-3 px-5">Click Here</a> </h2>
+				</div>
+			</div>
+				<br>
+					<ul class="ftco-footer-social list-unstyled d-flex justify-content-center align-items-center mb-0">
+					  <li class="ftco-animate normal-txt">Find me on  </li>
+					  <li class="ftco-animate"><a href="https://www.linkedin.com/in/badal-gami-0523641ba/"><span class="icon-linkedin"></span></a></li>  
+					  <li class="ftco-animate"><a href="https://www.facebook.com/badal.gami"><span class="icon-facebook"></span></a></li>
+				      <li class="ftco-animate"><a href="https://www.instagram.com/badl_gami/"><span class="icon-instagram"></span></a></li>
+					</ul>
+				<br>
+		   </div>
+   </div>
+ </section>
+
+
+ 
+	
+    <footer class="ftco-footer ftco-section">
+		<div class="container">
+		  <div class="row">
+			<div class="col-md-12 text-center">
+  
+			  <p>
+	Copyright &copy;<script>document.write(new Date().getFullYear());</script> </i> by Badal Gami
+			</p>
+			</div>
+		  </div>
+		</div>
+	  </footer>
+
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  
+  <script src="js/main.js"></script>
+    
+  </body>
+</html>
