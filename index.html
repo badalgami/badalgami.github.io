@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Badal Gami — AI Researcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#ffffff; --bg2:#f7f8fc; --bg3:#eef1f8;
+      --ink:#0f172a; --ink2:#334155; --ink3:#64748b;
+      --accent:#1d4ed8; --accent2:#3b82f6;
+      --teal:#0d9488; --teal-l:#ccfbf1;
+      --border:#e2e8f0; --border2:#cbd5e1;
+      --shadow:0 1px 3px rgba(15,23,42,0.06),0 4px 16px rgba(15,23,42,0.04);
+      --shadow-lg:0 8px 32px rgba(15,23,42,0.10);
+      --radius:12px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+    /* ── NAV ── */
+    header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    nav{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
+    .nav-brand{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-0.01em;}
+    .nav-links{list-style:none;display:flex;gap:0.2rem;}
+    .nav-links a{color:var(--ink3);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.02em;padding:0.4rem 0.8rem;border-radius:6px;transition:all 0.18s;}
+    .nav-links a:hover{color:var(--accent);background:var(--bg3);}
+
+    /* ── HERO ── */
+    .hero{background:linear-gradient(135deg,#f0f4ff 0%,#e8f4fd 50%,#f0fffe 100%);padding:5rem 2rem 4rem;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 600px 400px at 80% 50%,rgba(29,78,216,0.07) 0%,transparent 70%),radial-gradient(ellipse 400px 300px at 10% 80%,rgba(13,148,136,0.06) 0%,transparent 70%);pointer-events:none;}
+    .hero::after{content:'';position:absolute;right:0;top:0;bottom:0;width:42%;background-image:radial-gradient(circle,rgba(29,78,216,0.13) 1px,transparent 1px);background-size:28px 28px;mask-image:linear-gradient(to left,rgba(0,0,0,0.45),transparent);pointer-events:none;}
+    .hero-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 260px;gap:4rem;align-items:center;position:relative;z-index:1;}
+
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.73rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-l);padding:0.28rem 0.9rem;border-radius:999px;margin-bottom:1.2rem;opacity:0;animation:fadeUp 0.6s 0.1s ease forwards;}
+    .hero-eyebrow::before{content:'◉';font-size:0.58rem;}
+    .hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,3.6rem);font-weight:700;line-height:1.1;letter-spacing:-0.02em;color:var(--ink);margin-bottom:0.5rem;opacity:0;animation:fadeUp 0.6s 0.2s ease forwards;}
+    .hero-title{font-size:1rem;font-weight:400;color:var(--ink3);margin-bottom:1.6rem;opacity:0;animation:fadeUp 0.6s 0.3s ease forwards;}
+    .hero-title strong{color:var(--accent);font-weight:500;}
+    .hero-bio{font-size:0.97rem;color:var(--ink2);line-height:1.8;max-width:540px;margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.6s 0.4s ease forwards;}
+    .hero-chips{display:flex;gap:0.55rem;flex-wrap:wrap;margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.6s 0.45s ease forwards;}
+    .chip{font-size:0.77rem;font-weight:500;padding:0.28rem 0.8rem;border-radius:999px;border:1.5px solid var(--border2);color:var(--ink3);background:white;}
+    .hero-btns{display:flex;gap:0.7rem;flex-wrap:wrap;opacity:0;animation:fadeUp 0.6s 0.55s ease forwards;}
+    .btn{display:inline-flex;align-items:center;gap:0.35rem;padding:0.55rem 1.2rem;border-radius:8px;font-size:0.84rem;font-weight:500;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s;letter-spacing:0.01em;}
+    .btn-primary{background:var(--accent);color:white;box-shadow:0 2px 8px rgba(29,78,216,0.3);}
+    .btn-primary:hover{background:#1e40af;transform:translateY(-1px);box-shadow:0 4px 16px rgba(29,78,216,0.35);}
+    .btn-ghost{background:white;color:var(--ink2);border:1.5px solid var(--border2);}
+    .btn-ghost:hover{border-color:var(--accent2);color:var(--accent);background:#f0f4ff;}
+
+    /* Hero photo — just photo, no rows */
+    .hero-photo-card{background:white;border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border);overflow:hidden;opacity:0;animation:fadeLeft 0.7s 0.3s ease forwards;}
+    .hero-photo-wrap{width:100%;aspect-ratio:3/4;overflow:hidden;background:var(--bg3);display:flex;align-items:center;justify-content:center;}
+    .hero-photo{width:100%;height:100%;object-fit:cover;display:block;}
+    .hero-photo-placeholder{display:flex;flex-direction:column;align-items:center;gap:0.5rem;color:var(--ink3);font-size:0.78rem;}
+    .hero-photo-placeholder .av{font-size:3.5rem;opacity:0.2;}
+
+    /* ── SECTIONS ── */
+    .section-label{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem;}
+    .section-label::before{content:'';display:inline-block;width:18px;height:2px;background:var(--accent);border-radius:2px;}
+    .section-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.35rem;}
+    .section-sub{font-size:0.95rem;color:var(--ink3);margin-bottom:2.2rem;}
+    .main-wrap{max-width:860px;margin:0 auto;padding:0 2rem;}
+
+    /* ── REVEAL ── */
+    .reveal{opacity:0;transform:translateY(26px);transition:opacity 0.6s ease,transform 0.6s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-d1{transition-delay:0.1s;}
+    .reveal-d2{transition-delay:0.2s;}
+    .reveal-d3{transition-delay:0.3s;}
+    .reveal-d4{transition-delay:0.4s;}
+
+    /* ── NEWS ── */
+    .news-list{display:flex;flex-direction:column;}
+    .news-item{display:grid;grid-template-columns:96px 1fr;gap:1.4rem;padding:0.9rem 0;border-bottom:1px solid var(--border);align-items:baseline;}
+    .news-item:first-child{border-top:1px solid var(--border);}
+    .news-date{font-family:'DM Mono',monospace;font-size:0.74rem;color:var(--ink3);white-space:nowrap;padding-top:0.1rem;}
+    .news-body{font-size:0.92rem;color:var(--ink2);}
+    .badge{display:inline-block;font-size:0.66rem;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;padding:0.14rem 0.52rem;border-radius:4px;margin-right:0.45rem;vertical-align:middle;}
+    .badge-paper{background:#dbeafe;color:#1e40af;}
+    .badge-talk{background:#ede9fe;color:#6d28d9;}
+    .badge-award{background:#fef3c7;color:#b45309;}
+    .badge-new{background:#fce7f3;color:#be185d;}
+    .badge-grad{background:#dcfce7;color:#166534;}
+
+    /* ── INTERESTS ── */
+    .interests-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;}
+    .interest-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.4rem;position:relative;overflow:hidden;transition:box-shadow 0.22s,transform 0.22s;}
+    .interest-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+    .interest-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--teal));transform:scaleX(0);transform-origin:left;transition:transform 0.3s ease;}
+    .interest-card:hover::after{transform:scaleX(1);}
+    .interest-icon{font-size:1.7rem;margin-bottom:0.6rem;display:block;}
+    .interest-card h4{font-size:0.93rem;font-weight:600;margin-bottom:0.28rem;color:var(--ink);}
+    .interest-card p{font-size:0.81rem;color:var(--ink3);line-height:1.52;}
+
+    /* ── PROJECTS ── */
+    .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+    .project-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.5rem;transition:box-shadow 0.22s,transform 0.22s;display:flex;flex-direction:column;gap:0.65rem;}
+    .project-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-3px);}
+    .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:0.7rem;}
+    .project-status{flex-shrink:0;font-family:'DM Mono',monospace;font-size:0.65rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;padding:0.2rem 0.55rem;border-radius:4px;}
+    .status-active{background:#dcfce7;color:#166534;}
+    .status-collab{background:#fef3c7;color:#b45309;}
+    .project-card h3{font-family:'Playfair Display',serif;font-size:1.02rem;font-weight:600;color:var(--ink);line-height:1.35;}
+    .project-card p{font-size:0.85rem;color:var(--ink3);line-height:1.6;flex:1;}
+    .project-tags{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.15rem;}
+    .tag{font-family:'DM Mono',monospace;font-size:0.69rem;padding:0.13rem 0.5rem;background:var(--bg3);border:1px solid var(--border2);border-radius:4px;color:var(--ink3);}
+
+    /* ── PUBLICATIONS PREVIEW ── */
+    .pub-preview{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.5rem;margin-bottom:0.9rem;transition:box-shadow 0.2s;}
+    .pub-preview:hover{box-shadow:var(--shadow-lg);}
+    .pub-label{font-family:'DM Mono',monospace;font-weight:500;font-size:0.76rem;color:var(--accent);margin-right:0.4rem;}
+    .pub-title-text{font-weight:600;font-size:0.95rem;color:var(--ink);margin-bottom:0.22rem;}
+    .pub-authors{font-size:0.83rem;color:var(--ink3);margin-bottom:0.25rem;}
+    .pub-authors strong{color:var(--ink);font-weight:600;}
+    .pub-venue{font-size:0.83rem;font-style:italic;color:var(--ink3);}
+    .pub-meta-row{display:flex;align-items:center;gap:0.7rem;margin-top:0.65rem;flex-wrap:wrap;}
+    .if-badge{font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.13rem 0.52rem;border-radius:4px;background:#dcfce7;border:1px solid #a7f3d0;color:#065f46;font-weight:500;}
+    .pub-link{font-size:0.77rem;font-weight:500;color:var(--accent);text-decoration:none;}
+    .pub-link:hover{text-decoration:underline;}
+    .pub-all-link{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.87rem;font-weight:500;color:var(--accent);text-decoration:none;margin-top:0.4rem;padding-bottom:2px;border-bottom:2px solid var(--accent);transition:gap 0.2s;}
+    .pub-all-link:hover{gap:0.8rem;}
+
+    /* ── BEYOND THE LAB ── */
+    .beyond-section{padding:5rem 2rem;background:linear-gradient(135deg,#fafafa 0%,#f0f4ff 100%);}
+    .beyond-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:1fr 440px;gap:5rem;align-items:center;}
+    .funfacts-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.8rem;}
+    .funfact-card{background:white;border:1px solid var(--border);border-radius:var(--radius);padding:1.3rem 1.4rem;display:flex;align-items:flex-start;gap:1rem;transition:box-shadow 0.2s,transform 0.2s;}
+    .funfact-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-2px);}
+    .funfact-icon{font-size:2rem;line-height:1;flex-shrink:0;}
+    .funfact-card h4{font-size:0.93rem;font-weight:600;color:var(--ink);margin-bottom:0.2rem;}
+    .funfact-card p{font-size:0.82rem;color:var(--ink3);line-height:1.5;}
+
+    /* ── PERSONAL PHOTO SLIDER ── */
+    .personal-slider-wrap{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(15,23,42,0.13);position:relative;aspect-ratio:4/3;background:#e2e8f0;}
+    .personal-slides{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);}
+    .personal-slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .personal-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+    .personal-slide::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:3rem 1.2rem 1rem;background:linear-gradient(transparent,rgba(15,23,42,0.6));color:white;font-size:0.82rem;font-weight:500;text-align:center;letter-spacing:0.02em;pointer-events:none;}
+    .p-slide-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.7rem;color:#94a3b8;font-size:0.83rem;font-weight:500;}
+    .p-slide-placeholder .pico{font-size:3.5rem;opacity:0.6;}
+    .p-slider-dots{position:absolute;bottom:0.9rem;left:0;right:0;display:flex;justify-content:center;gap:0.45rem;z-index:10;}
+    .p-dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.25s;border:none;padding:0;outline:none;}
+    .p-dot.active{background:white;width:22px;}
+    .p-slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s;backdrop-filter:blur(4px);}
+    .p-slider-btn:hover{background:white;transform:translateY(-50%) scale(1.08);}
+    .p-slider-btn.prev{left:0.7rem;}
+    .p-slider-btn.next{right:0.7rem;}
+
+    /* ── SHIRO ── */
+    .shiro-section{background:linear-gradient(135deg,#f0fdf4 0%,#ecfdf5 45%,#f0f9ff 100%);padding:5rem 2rem;border-top:1px solid var(--border);position:relative;overflow:hidden;cursor:none;}
+    .shiro-section::before{content:'🐾';position:absolute;right:2.5rem;top:1.5rem;font-size:9rem;opacity:0.05;transform:rotate(12deg);pointer-events:none;}
+    .shiro-inner{max-width:1140px;margin:0 auto;display:grid;grid-template-columns:420px 1fr;gap:4rem;align-items:center;}
+
+    /* Shiro slider */
+    .slider-wrap{border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(15,23,42,0.13);position:relative;aspect-ratio:4/3;background:#e2e8f0;}
+    .slides{display:flex;height:100%;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1);}
+    .slide{min-width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .slide img{width:100%;height:100%;object-fit:cover;display:block;}
+    .slide::after{content:attr(data-caption);position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.2rem 1rem;background:linear-gradient(transparent,rgba(15,23,42,0.55));color:white;font-size:0.8rem;font-weight:500;text-align:center;letter-spacing:0.02em;pointer-events:none;}
+    .slide-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.7rem;color:#94a3b8;font-size:0.83rem;font-weight:500;}
+    .slide-placeholder .paw{font-size:4rem;opacity:0.7;}
+    .slider-dots{position:absolute;bottom:0.9rem;left:0;right:0;display:flex;justify-content:center;gap:0.45rem;z-index:10;}
+    .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.5);cursor:pointer;transition:all 0.25s;border:none;padding:0;outline:none;}
+    .dot.active{background:white;width:22px;}
+    .slider-btn{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;cursor:pointer;z-index:10;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--ink2);box-shadow:0 2px 8px rgba(0,0,0,0.15);transition:all 0.2s;backdrop-filter:blur(4px);}
+    .slider-btn:hover{background:white;transform:translateY(-50%) scale(1.08);}
+    .slider-btn.prev{left:0.7rem;}
+    .slider-btn.next{right:0.7rem;}
+
+    /* Shiro text */
+    .shiro-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-l);padding:0.28rem 0.9rem;border-radius:999px;margin-bottom:0.9rem;}
+    .shiro-name{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.25rem;line-height:1.15;}
+    .shiro-role{font-size:0.82rem;color:var(--ink3);font-family:'DM Mono',monospace;margin-bottom:1.3rem;}
+    .shiro-quote{font-size:0.98rem;color:var(--ink2);line-height:1.8;margin-bottom:1.4rem;font-style:italic;border-left:3px solid var(--teal);padding-left:1.1rem;}
+    .shiro-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:0.9rem;margin-bottom:1.4rem;}
+    .shiro-stat{background:white;border:1px solid var(--border);border-radius:10px;padding:0.85rem 0.9rem;text-align:center;}
+    .shiro-stat .num{display:block;font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--teal);line-height:1.1;margin-bottom:0.12rem;}
+    .shiro-stat .lbl{font-size:0.69rem;color:var(--ink3);font-family:'DM Mono',monospace;letter-spacing:0.04em;}
+    .shiro-warning{background:white;border:1px solid #fed7aa;border-radius:10px;padding:0.85rem 1.1rem;font-size:0.85rem;color:var(--ink2);display:flex;align-items:flex-start;gap:0.55rem;}
+
+    /* ── PAW CURSOR ── */
+    #paw-cursor{
+      pointer-events:none;
+      position:fixed;
+      top:0;left:0;
+      z-index:9999;
+      width:48px;height:48px;
+      opacity:0;
+      transition:opacity 0.25s ease;
+      will-change:transform;
+    }
+    #paw-cursor.visible{opacity:1;}
+    #paw-cursor svg{
+      width:100%;height:100%;
+      filter:drop-shadow(0 2px 6px rgba(15,23,42,0.2));
+      animation:pawBounce 1s ease-in-out infinite;
+      transform-origin:center;
+    }
+    #paw-cursor.moving svg{animation:pawWag 0.3s ease-in-out infinite;}
+    @keyframes pawBounce{
+      0%,100%{transform:rotate(-8deg) scale(1);}
+      50%{transform:rotate(8deg) scale(1.1);}
+    }
+    @keyframes pawWag{
+      0%,100%{transform:rotate(-18deg) scale(1.12);}
+      50%{transform:rotate(18deg) scale(0.94);}
+    }
+
+    /* ── CONTACT ── */
+    .contact-section{background:var(--ink);color:white;padding:5rem 2rem;}
+    .contact-inner{max-width:860px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+    .contact-left h2{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;margin-bottom:0.5rem;letter-spacing:-0.02em;}
+    .contact-left p{color:#94a3b8;font-size:0.95rem;line-height:1.7;margin-bottom:2rem;}
+    .contact-item{display:flex;align-items:center;gap:0.8rem;padding:0.7rem 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:0.9rem;color:#cbd5e1;}
+    .contact-item:last-of-type{border-bottom:none;}
+    .contact-item a{color:#93c5fd;text-decoration:none;}
+    .contact-item a:hover{color:white;}
+    .contact-form-note{margin-top:1.5rem;padding:1rem 1.2rem;border:1px solid rgba(255,255,255,0.1);border-radius:10px;font-size:0.85rem;color:#94a3b8;background:rgba(255,255,255,0.03);}
+    .contact-form-note a{color:#93c5fd;}
+    .contact-right h3{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:600;margin-bottom:1.2rem;color:#e2e8f0;}
+
+    /* Social cards — logo slot version */
+    .social-grid{display:flex;flex-direction:column;gap:0.7rem;}
+    .social-card{display:flex;align-items:center;gap:0.9rem;padding:0.85rem 1.1rem;border:1px solid rgba(255,255,255,0.1);border-radius:10px;text-decoration:none;color:#cbd5e1;font-size:0.9rem;font-weight:500;transition:all 0.2s;background:rgba(255,255,255,0.03);}
+    .social-card:hover{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.25);color:white;transform:translateX(4px);}
+    .s-logo-box{width:32px;height:32px;border-radius:7px;background:rgba(255,255,255,0.1);flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(255,255,255,0.12);}
+    .s-logo-box img{width:100%;height:100%;object-fit:contain;display:block;}
+    .s-logo-box .s-fallback{font-family:'DM Mono',monospace;font-size:0.7rem;font-weight:600;color:#94a3b8;}
+    .s-card-text{display:flex;flex-direction:column;gap:0.05rem;}
+    .s-card-text .s-name{font-weight:600;font-size:0.88rem;}
+    .s-card-text .s-handle{font-size:0.75rem;color:#64748b;font-family:'DM Mono',monospace;}
+    .social-card:hover .s-card-text .s-handle{color:#94a3b8;}
+
+    /* ── FOOTER ── */
+    footer{background:#060d1a;color:#475569;text-align:center;padding:1.5rem 2rem;font-size:0.78rem;font-family:'DM Mono',monospace;letter-spacing:0.03em;border-top:1px solid rgba(255,255,255,0.05);}
+    footer a{color:#475569;text-decoration:none;}
+    footer a:hover{color:#94a3b8;}
+
+    /* ── KEYFRAMES ── */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+    @keyframes fadeLeft{from{opacity:0;transform:translateX(30px);}to{opacity:1;transform:none;}}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){
+      .hero-inner{grid-template-columns:1fr;}
+      .hero-photo-card{max-width:260px;}
+      .beyond-inner{grid-template-columns:1fr;}
+      .personal-slider-wrap{max-width:420px;margin:0 auto;}
+      .shiro-inner{grid-template-columns:1fr;}
+      .slider-wrap{max-width:400px;margin:0 auto;}
+      .contact-inner{grid-template-columns:1fr;}
+    }
+    @media(max-width:640px){
+      .interests-grid{grid-template-columns:1fr 1fr;}
+      .projects-grid{grid-template-columns:1fr;}
+      .funfacts-grid{grid-template-columns:1fr;}
+      .hero-name{font-size:2.1rem;}
+      nav .nav-links{display:none;}
+    }
+    @media(max-width:420px){
+      .interests-grid{grid-template-columns:1fr;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- PAW CURSOR (follows mouse inside Shiro section) -->
+<div id="paw-cursor" aria-hidden="true">
+  <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <!-- main pad -->
+    <ellipse cx="32" cy="44" rx="14" ry="11" fill="#5d4037"/>
+    <!-- toe pads -->
+    <ellipse cx="16" cy="30" rx="6.5" ry="7.5" fill="#5d4037"/>
+    <ellipse cx="26" cy="23" rx="6" ry="7" fill="#5d4037"/>
+    <ellipse cx="38" cy="23" rx="6" ry="7" fill="#5d4037"/>
+    <ellipse cx="48" cy="30" rx="6.5" ry="7.5" fill="#5d4037"/>
+    <!-- inner lighter patches -->
+    <ellipse cx="32" cy="45" rx="9" ry="7" fill="#8d6e63" opacity="0.55"/>
+    <ellipse cx="16" cy="31" rx="3.5" ry="4" fill="#8d6e63" opacity="0.55"/>
+    <ellipse cx="26" cy="24" rx="3.5" ry="4" fill="#8d6e63" opacity="0.55"/>
+    <ellipse cx="38" cy="24" rx="3.5" ry="4" fill="#8d6e63" opacity="0.55"/>
+    <ellipse cx="48" cy="31" rx="3.5" ry="4" fill="#8d6e63" opacity="0.55"/>
+  </svg>
+</div>
+
+<!-- ══ NAV ══ -->
+<header>
+  <nav>
+    <a class="nav-brand" href="index.html">Badal Gami</a>
+    <ul class="nav-links">
+      <li><a href="#news">News</a></li>
+      <li><a href="#interests">Research</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">AI Researcher &amp; Computer Engineer</div>
+      <h1 class="hero-name">Badal Gami</h1>
+      <p class="hero-title">
+        <strong>Neuromorphic Computing &amp; Trustworthy ML</strong><br>
+        Delhi Technological University · B.Tech 2023
+      </p>
+      <p class="hero-bio">
+        I work at the intersection of machine learning and neuromorphic computing —
+        building AI systems that are reliable, explainable, and efficient.
+        My research spans computer vision, medical AI, privacy-preserving systems,
+        and low-resource NLP.
+      </p>
+      <div class="hero-chips">
+        <span class="chip">🧠 Neuromorphic AI</span>
+        <span class="chip">🏥 Medical Imaging</span>
+        <span class="chip">🔐 Federated Learning</span>
+        <span class="chip">🌏 Low-Resource NLP</span>
+      </div>
+      <div class="hero-btns">
+        <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="btn btn-primary" target="_blank">Google Scholar ↗</a>
+        <a href="publications.html" class="btn btn-ghost">Publications</a>
+        <a href="https://drive.google.com/file/d/1oI-Fkd6f-qbOLGEQxFqPk5s8AjFbBOvp/view?usp=sharing" class="btn btn-ghost" target="_blank">Download CV</a>
+      </div>
+    </div>
+    <!-- Photo only, no info rows -->
+    <div class="hero-photo-card">
+      <div class="hero-photo-wrap">
+        <!-- Replace with: <img src="images/gami1.png" class="hero-photo" alt="Badal Gami"> -->
+        <div class="hero-photo-placeholder">
+          <span class="av">👨‍💻</span>
+          <span>gami1.png</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MAIN CONTENT ══ -->
+<div class="main-wrap">
+
+  <!-- NEWS -->
+  <section style="padding:4rem 0;" id="news">
+    <div class="section-label reveal">Latest Updates</div>
+    <h2 class="section-title reveal reveal-d1">News</h2>
+    <p class="section-sub reveal reveal-d2">Research updates, publications, talks and milestones.</p>
+    <div class="news-list reveal reveal-d2">
+      <div class="news-item">
+        <span class="news-date">Mar 2025</span>
+        <span class="news-body"><span class="badge badge-paper">Paper</span>Paper accepted in <em>Transactions on Emerging Telecommunications Technologies</em> (Wiley, IF 3.6) — AI + blockchain for healthcare privacy.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jan 2025</span>
+        <span class="news-body"><span class="badge badge-new">New</span>Started research on neuromorphic hardware co-design for energy-efficient edge inference.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Nov 2024</span>
+        <span class="news-body"><span class="badge badge-paper">Paper</span>Submitted work on low-resource Nepali NLP classification using fine-tuned BERT variants.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Sep 2024</span>
+        <span class="news-body"><span class="badge badge-talk">Talk</span>Presented early breast carcinoma detection at an internal ML symposium.</span>
+      </div>
+      <div class="news-item">
+        <span class="news-date">Jun 2023</span>
+        <span class="news-body"><span class="badge badge-grad">Grad</span>Graduated B.Tech in Computer Engineering, Delhi Technological University.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH INTERESTS -->
+  <section id="interests" style="padding:3rem 0;">
+    <div class="section-label reveal">Focus Areas</div>
+    <h2 class="section-title reveal reveal-d1">Research Interests</h2>
+    <p class="section-sub reveal reveal-d2">The problems I care most about solving.</p>
+    <div class="interests-grid">
+      <div class="interest-card reveal reveal-d1"><span class="interest-icon">🧬</span><h4>Neuromorphic Computing &amp; ML</h4><p>Spiking neural networks and hardware-aware algorithms for energy-efficient, biologically plausible AI.</p></div>
+      <div class="interest-card reveal reveal-d2"><span class="interest-icon">🛡️</span><h4>Trustworthy &amp; Reliable AI</h4><p>Robust, explainable, and uncertainty-aware deep learning for safety-critical applications.</p></div>
+      <div class="interest-card reveal reveal-d3"><span class="interest-icon">🏥</span><h4>Medical AI &amp; Computer Vision</h4><p>Deep learning for medical imaging — early cancer detection, diagnostic support, and clinical privacy.</p></div>
+      <div class="interest-card reveal reveal-d1"><span class="interest-icon">🌏</span><h4>Low-Resource NLP</h4><p>Cross-lingual transfer and fine-tuning strategies for under-resourced South Asian languages.</p></div>
+      <div class="interest-card reveal reveal-d2"><span class="interest-icon">🔐</span><h4>Privacy-Preserving AI</h4><p>Federated learning and blockchain for decentralized, privacy-aware AI in healthcare and IoT.</p></div>
+      <div class="interest-card reveal reveal-d3"><span class="interest-icon">🌱</span><h4>AI for Social Good</h4><p>High-impact ML applications with emphasis on fairness, accessibility, and real-world deployment.</p></div>
+    </div>
+  </section>
+
+  <!-- ONGOING PROJECTS -->
+  <section id="projects" style="padding:3rem 0;">
+    <div class="section-label reveal">Work in Progress</div>
+    <h2 class="section-title reveal reveal-d1">Ongoing Research</h2>
+    <p class="section-sub reveal reveal-d2">Active projects and collaborations.</p>
+    <div class="projects-grid">
+      <div class="project-card reveal reveal-d1">
+        <div class="project-header"><h3>Neuromorphic Co-design for Edge ML</h3><span class="project-status status-active">Active</span></div>
+        <p>Hardware-software co-design for deploying SNNs on neuromorphic chips (Loihi, TrueNorth). Target: ANN-comparable accuracy at a fraction of the energy budget for real-time IoT.</p>
+        <div class="project-tags"><span class="tag">SNN</span><span class="tag">Neuromorphic</span><span class="tag">Edge AI</span><span class="tag">PyTorch</span></div>
+      </div>
+      <div class="project-card reveal reveal-d2">
+        <div class="project-header"><h3>Uncertainty Quantification in Medical Imaging</h3><span class="project-status status-active">Active</span></div>
+        <p>Bayesian deep learning and ensemble methods for predictive uncertainty in histopathology and radiology AI. Focus on explainability and clinical deployment reliability.</p>
+        <div class="project-tags"><span class="tag">Bayesian DL</span><span class="tag">Medical Imaging</span><span class="tag">XAI</span><span class="tag">TensorFlow</span></div>
+      </div>
+      <div class="project-card reveal reveal-d1">
+        <div class="project-header"><h3>Federated Learning for Healthcare Privacy</h3><span class="project-status status-collab">Collaboration</span></div>
+        <p>Extending blockchain-based FL to multi-institutional hospital settings with differential privacy guarantees and communication efficiency under non-IID data distributions.</p>
+        <div class="project-tags"><span class="tag">Federated Learning</span><span class="tag">Blockchain</span><span class="tag">Differential Privacy</span></div>
+      </div>
+      <div class="project-card reveal reveal-d2">
+        <div class="project-header"><h3>Multilingual BERT for South Asian NLP</h3><span class="project-status status-collab">Collaboration</span></div>
+        <p>Adapter-based fine-tuning for NER, classification and sentiment in Nepali, Maithili, and Bhojpuri. Benchmarking zero-shot vs. few-shot cross-lingual transfer on curated datasets.</p>
+        <div class="project-tags"><span class="tag">NLP</span><span class="tag">BERT</span><span class="tag">Low-Resource</span><span class="tag">HuggingFace</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS PREVIEW -->
+  <section style="padding:3rem 0 1rem;">
+    <div class="section-label reveal">Research Output</div>
+    <h2 class="section-title reveal reveal-d1">Selected Publications</h2>
+    <p class="section-sub reveal reveal-d2">Peer-reviewed journals, conferences, and preprints.</p>
+    <div class="pub-preview reveal reveal-d2">
+      <div class="pub-title-text"><span class="pub-label">[J1]</span>Artificial intelligence-based blockchain solutions for intelligent healthcare: A comprehensive review on privacy preserving techniques</div>
+      <div class="pub-authors"><strong>Badal Gami</strong> et al.</div>
+      <div class="pub-venue">Transactions on Emerging Telecommunications Technologies, Wiley, 2024</div>
+      <div class="pub-meta-row">
+        <span class="if-badge">IF 3.6</span>
+        <a href="https://onlinelibrary.wiley.com/doi/10.1002/ett.4824" class="pub-link" target="_blank">DOI ↗</a>
+        <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="pub-link" target="_blank">Scholar ↗</a>
+      </div>
+    </div>
+    <a href="publications.html" class="pub-all-link reveal reveal-d3">View full publication list →</a>
+  </section>
+
+</div><!-- end main-wrap -->
+
+<!-- ══ BEYOND THE LAB ══ -->
+<section class="beyond-section">
+  <div class="beyond-inner">
+
+    <!-- LEFT: Fun facts -->
+    <div>
+      <div class="section-label reveal">Beyond the Lab</div>
+      <h2 class="section-title reveal reveal-d1">A Few Things About Me</h2>
+      <p class="section-sub reveal reveal-d2">Science is what I do. Here's who I am.</p>
+      <div class="funfacts-grid">
+        <div class="funfact-card reveal reveal-d1">
+          <span class="funfact-icon">🦸</span>
+          <div>
+            <h4>Marvel Fanatic</h4>
+            <p>Team Iron Man, always. I have strong opinions about the MCU timeline and I will defend them.</p>
+          </div>
+        </div>
+        <div class="funfact-card reveal reveal-d2">
+          <span class="funfact-icon">🏔️</span>
+          <div>
+            <h4>Avid Trekker</h4>
+            <p>Mountains are where I reset. There's no debugging error that a good hike can't fix.</p>
+          </div>
+        </div>
+        <div class="funfact-card reveal reveal-d1">
+          <span class="funfact-icon">📷</span>
+          <div>
+            <h4>Photography</h4>
+            <p>Landscapes, candids, golden hour. The slider on the right is proof I go outside sometimes.</p>
+          </div>
+        </div>
+        <div class="funfact-card reveal reveal-d2">
+          <span class="funfact-icon">🌍</span>
+          <div>
+            <h4>Geography Lover</h4>
+            <p>Deserts, forests, oceans, glaciers — fascinated by every biome Earth has to offer. Nature's diversity is endlessly humbling.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Personal photo slider -->
+    <div class="reveal reveal-d2">
+      <div class="personal-slider-wrap">
+        <div class="personal-slides" id="personalSlides">
+          <!-- Replace placeholders with <img src="images/photoX.jpg" alt="caption"> -->
+          <div class="personal-slide" style="background:linear-gradient(135deg,#c7d9f0,#a8c4e8);" data-caption="Somewhere up in the mountains ⛰️">
+            <div class="p-slide-placeholder"><span class="pico">🏔️</span><span>photo1.jpg</span></div>
+          </div>
+          <div class="personal-slide" style="background:linear-gradient(135deg,#f0dcc7,#e8c8a8);" data-caption="Golden hour somewhere worth the hike 📷">
+            <div class="p-slide-placeholder"><span class="pico">📷</span><span>photo2.jpg</span></div>
+          </div>
+          <div class="personal-slide" style="background:linear-gradient(135deg,#d0e8d0,#b0d8b0);" data-caption="Trail days are the best days 🌿">
+            <div class="p-slide-placeholder"><span class="pico">🌿</span><span>photo3.jpg</span></div>
+          </div>
+          <div class="personal-slide" style="background:linear-gradient(135deg,#e8d0f0,#d0b8e8);" data-caption="When the view makes the climb worth it ✨">
+            <div class="p-slide-placeholder"><span class="pico">✨</span><span>photo4.jpg</span></div>
+          </div>
+        </div>
+        <button class="p-slider-btn prev" onclick="personalSlide(-1)" aria-label="Previous">&#8249;</button>
+        <button class="p-slider-btn next" onclick="personalSlide(1)" aria-label="Next">&#8250;</button>
+        <div class="p-slider-dots">
+          <button class="p-dot active" onclick="personalGoTo(0)"></button>
+          <button class="p-dot" onclick="personalGoTo(1)"></button>
+          <button class="p-dot" onclick="personalGoTo(2)"></button>
+          <button class="p-dot" onclick="personalGoTo(3)"></button>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:0.78rem;color:var(--ink3);margin-top:0.8rem;font-family:'DM Mono',monospace;">Trek &amp; photography collection</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ SHIRO ══ -->
+<section class="shiro-section">
+  <div class="shiro-inner">
+
+    <!-- Shiro slider -->
+    <div class="reveal">
+      <div class="slider-wrap">
+        <div class="slides" id="shiroSlides">
+          <!-- Replace placeholders with <img src="images/shiroX.jpg" alt="Shiro"> -->
+          <div class="slide" style="background:linear-gradient(135deg,#d4edda,#a8d5b5);" data-caption="Prof. Shiro — lost in thought (probably about treats)">
+            <div class="slide-placeholder"><span class="paw">🐶</span><span>shiro1.jpg</span></div>
+          </div>
+          <div class="slide" style="background:linear-gradient(135deg,#dde8f5,#b8cfe8);" data-caption="Prof. Shiro — peer reviewing a paper (chewing it, actually)">
+            <div class="slide-placeholder"><span class="paw">🐾</span><span>shiro2.jpg</span></div>
+          </div>
+          <div class="slide" style="background:linear-gradient(135deg,#f5e8dd,#e8d0c0);" data-caption="Prof. Shiro — napping through a deadline. As usual.">
+            <div class="slide-placeholder"><span class="paw">😴</span><span>shiro3.jpg</span></div>
+          </div>
+        </div>
+        <button class="slider-btn prev" onclick="shiroSlide(-1)" aria-label="Previous">&#8249;</button>
+        <button class="slider-btn next" onclick="shiroSlide(1)" aria-label="Next">&#8250;</button>
+        <div class="slider-dots">
+          <button class="dot active" onclick="shiroGoTo(0)"></button>
+          <button class="dot" onclick="shiroGoTo(1)"></button>
+          <button class="dot" onclick="shiroGoTo(2)"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shiro text -->
+    <div class="reveal reveal-d2">
+      <div class="shiro-eyebrow">🐾 Equally Contributing Author</div>
+      <h2 class="shiro-name">Meet Prof. Shiro</h2>
+      <p class="shiro-role">Chief Paw Officer · Institute of Good Boys · Dept. of Unconditional Support</p>
+      <blockquote class="shiro-quote">
+        "Prof. Shiro's moral support, strategic napping at critical deadlines, and enthusiastic
+        barking during late-night paper revisions have been equally — if not more — valuable
+        than my own contributions to every single publication."
+      </blockquote>
+      <div class="shiro-stats">
+        <div class="shiro-stat"><span class="num">&#8734;</span><span class="lbl">Cuddles given</span></div>
+        <div class="shiro-stat"><span class="num">100%</span><span class="lbl">Good boy rating</span></div>
+        <div class="shiro-stat"><span class="num">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="lbl">Zoomies score</span></div>
+      </div>
+      <div class="shiro-warning">
+        <span style="font-size:1.1rem;margin-top:0.05rem;">&#9888;&#65039;</span>
+        <span>
+          <strong>Author's Note:</strong> Do not be scared when you meet Prof. Shiro.
+          He gives his paws when you ask him — this is not aggression, it is
+          <em>peer review</em>. He does not bite. He does judge your research methodology, though.
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-left reveal">
+      <h2>Get in Touch</h2>
+      <p>I'm always open to research collaborations, academic discussions, or just a good conversation about AI, trekking, or the MCU.</p>
+      <div class="contact-item"><span>&#9993;</span><a href="mailto:badalgami@gmail.com">badalgami@gmail.com</a></div>
+      <div class="contact-item"><span>&#128222;</span><span>+91 9599049119</span></div>
+      <div class="contact-item"><span>&#128205;</span><span>India</span></div>
+      <div class="contact-item"><span>&#128196;</span><a href="https://drive.google.com/file/d/1oI-Fkd6f-qbOLGEQxFqPk5s8AjFbBOvp/view?usp=sharing" target="_blank">Download CV / Résumé</a></div>
+      <div class="contact-form-note">
+        Have a question or proposal?
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfEkDg8YwHVi7hvwYWXM0W7TSoS10Ng62Zopmxc4i7UVznHWw/viewform" target="_blank">Send me a message &#8594;</a>
+      </div>
+    </div>
+
+    <div class="contact-right reveal reveal-d2">
+      <h3>Find me online</h3>
+      <div class="social-grid">
+
+        <!-- LinkedIn — drop images/linkedin-logo.png into your images/ folder -->
+        <a href="https://www.linkedin.com/in/badal-gami-0523641ba/" class="social-card" target="_blank">
+          <div class="s-logo-box">
+            <img src="images/linkedin-logo.png" alt="" onerror="this.style.display='none';this.parentElement.querySelector('.s-fallback').style.display='block'">
+            <span class="s-fallback" style="display:none">in</span>
+          </div>
+          <div class="s-card-text">
+            <span class="s-name">LinkedIn</span>
+            <span class="s-handle">badal-gami</span>
+          </div>
+        </a>
+
+        <!-- GitHub — drop images/github-logo.png into your images/ folder -->
+        <a href="https://github.com/badalgami" class="social-card" target="_blank">
+          <div class="s-logo-box">
+            <img src="images/github-logo.png" alt="" onerror="this.style.display='none';this.parentElement.querySelector('.s-fallback').style.display='block'">
+            <span class="s-fallback" style="display:none">GH</span>
+          </div>
+          <div class="s-card-text">
+            <span class="s-name">GitHub</span>
+            <span class="s-handle">@badalgami</span>
+          </div>
+        </a>
+
+        <!-- Google Scholar — drop images/scholar-logo.png into your images/ folder -->
+        <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="social-card" target="_blank">
+          <div class="s-logo-box">
+            <img src="images/scholar-logo.png" alt="" onerror="this.style.display='none';this.parentElement.querySelector('.s-fallback').style.display='block'">
+            <span class="s-fallback" style="display:none">GS</span>
+          </div>
+          <div class="s-card-text">
+            <span class="s-name">Google Scholar</span>
+            <span class="s-handle">Badal Gami</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <p>&#169; <span id="yr"></span> Badal Gami &nbsp;&middot;&nbsp;
+    <a href="mailto:badalgami@gmail.com">badalgami@gmail.com</a> &nbsp;&middot;&nbsp;
+    Built with &#9749; &amp; &#128062;
+  </p>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Scroll reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Shiro slider
+  let shiroIdx = 0;
+  function shiroGoTo(n) {
+    shiroIdx = n;
+    document.getElementById('shiroSlides').style.transform = 'translateX(-' + (n * 100) + '%)';
+    document.querySelectorAll('.dot').forEach(function(d, i) { d.classList.toggle('active', i === n); });
+  }
+  function shiroSlide(dir) { shiroGoTo((shiroIdx + dir + 3) % 3); }
+  setInterval(function() { shiroSlide(1); }, 4500);
+
+  // Personal photo slider
+  let pIdx = 0;
+  const pTotal = 4;
+  function personalGoTo(n) {
+    pIdx = n;
+    document.getElementById('personalSlides').style.transform = 'translateX(-' + (n * 100) + '%)';
+    document.querySelectorAll('.p-dot').forEach(function(d, i) { d.classList.toggle('active', i === n); });
+  }
+  function personalSlide(dir) { personalGoTo((pIdx + dir + pTotal) % pTotal); }
+  setInterval(function() { personalSlide(1); }, 5000);
+
+  // Paw cursor — activates only inside the Shiro section
+  var pawEl = document.getElementById('paw-cursor');
+  var shiroSection = document.querySelector('.shiro-section');
+  var moveTimer = null;
+
+  document.addEventListener('mousemove', function(e) {
+    pawEl.style.transform = 'translate(' + (e.clientX - 24) + 'px, ' + (e.clientY - 24) + 'px)';
+    var rect = shiroSection.getBoundingClientRect();
+    var inside = e.clientX >= rect.left && e.clientX <= rect.right &&
+                 e.clientY >= rect.top  && e.clientY <= rect.bottom;
+    pawEl.classList.toggle('visible', inside);
+    if (inside) {
+      pawEl.classList.add('moving');
+      clearTimeout(moveTimer);
+      moveTimer = setTimeout(function() { pawEl.classList.remove('moving'); }, 220);
+    }
+  });
+</script>
+</body>
+</html>
