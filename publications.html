@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Publications — Badal Gami</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#ffffff;--bg2:#f7f8fc;--bg3:#eef1f8;--ink:#0f172a;--ink2:#334155;--ink3:#64748b;--accent:#1d4ed8;--accent2:#3b82f6;--teal:#0d9488;--teal-l:#ccfbf1;--border:#e2e8f0;--border2:#cbd5e1;--shadow:0 1px 3px rgba(15,23,42,0.06),0 4px 16px rgba(15,23,42,0.04);--shadow-lg:0 8px 32px rgba(15,23,42,0.10);--radius:12px;}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--bg);color:var(--ink);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+    header{position:sticky;top:0;z-index:200;background:rgba(255,255,255,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+    nav{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;}
+    .nav-brand{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:600;color:var(--ink);text-decoration:none;}
+    .nav-links{list-style:none;display:flex;gap:0.2rem;}
+    .nav-links a{color:var(--ink3);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.02em;padding:0.4rem 0.8rem;border-radius:6px;transition:all 0.18s;}
+    .nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--bg3);}
+
+    .page-hero{background:linear-gradient(135deg,#f0f4ff 0%,#e8f4fd 60%,#f0fffe 100%);padding:4rem 2rem 3rem;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+    .page-hero::after{content:'';position:absolute;right:0;top:0;bottom:0;width:40%;background-image:radial-gradient(circle,rgba(29,78,216,0.12) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(to left,rgba(0,0,0,0.4),transparent);pointer-events:none;}
+    .page-hero-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1;}
+    .page-eyebrow{display:inline-flex;align-items:center;gap:0.5rem;font-family:'DM Mono',monospace;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);background:var(--teal-l);padding:0.28rem 0.9rem;border-radius:999px;margin-bottom:0.9rem;}
+    .page-hero h1{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:700;color:var(--ink);letter-spacing:-0.02em;margin-bottom:0.5rem;}
+    .page-hero p{font-size:0.97rem;color:var(--ink3);margin-bottom:2rem;}
+    .pub-stats-row{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:1.5rem;border-top:1px solid var(--border);}
+    .pstat{text-align:center;}
+    .pstat .n{display:block;font-family:'Playfair Display',serif;font-size:2rem;color:var(--accent);line-height:1;}
+    .pstat .l{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink3);letter-spacing:0.06em;text-transform:uppercase;}
+
+    .main{max-width:1000px;margin:0 auto;padding:3rem 2rem;}
+
+    .toc{background:var(--bg2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:var(--radius);padding:1.1rem 1.4rem;margin-bottom:3rem;}
+    .toc-title{font-weight:600;font-size:0.88rem;margin-bottom:0.5rem;color:var(--ink);}
+    .toc ul{list-style:none;display:flex;gap:1.5rem;flex-wrap:wrap;}
+    .toc a{color:var(--accent);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.78rem;}
+    .toc a:hover{text-decoration:underline;}
+
+    .pub-section{margin-bottom:3.5rem;}
+    .pub-section-hdr{display:flex;align-items:baseline;gap:1rem;border-bottom:2px solid var(--border);padding-bottom:0.6rem;margin-bottom:2rem;}
+    .pub-section-hdr h2{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--ink);}
+    .pub-count{font-family:'DM Mono',monospace;font-size:0.75rem;color:var(--ink3);letter-spacing:0.05em;}
+
+    .pub-entry{display:grid;grid-template-columns:52px 1fr;padding:1.2rem 0;border-bottom:1px solid var(--border);transition:background 0.15s;}
+    .pub-entry:last-child{border-bottom:none;}
+    .pub-entry:hover{background:var(--bg2);margin:0 -1rem;padding-left:1rem;padding-right:1rem;border-radius:8px;}
+    .pub-id{font-family:'DM Mono',monospace;font-weight:600;font-size:0.82rem;color:var(--accent);padding-top:0.15rem;}
+    .pub-title{font-weight:600;font-size:0.97rem;color:var(--ink);line-height:1.45;margin-bottom:0.28rem;}
+    .pub-title a{color:var(--ink);text-decoration:none;}
+    .pub-title a:hover{color:var(--accent);}
+    .pub-authors{font-size:0.86rem;color:var(--ink3);margin-bottom:0.25rem;}
+    .pub-authors .me{font-weight:700;color:var(--ink);}
+    .pub-venue{font-size:0.86rem;font-style:italic;color:var(--ink3);margin-bottom:0.5rem;}
+    .pub-meta{display:flex;align-items:center;gap:0.7rem;flex-wrap:wrap;margin-top:0.45rem;}
+    .if-badge{font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.13rem 0.52rem;border-radius:4px;background:#dcfce7;border:1px solid #a7f3d0;color:#065f46;font-weight:500;}
+    .year-tag{font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--ink3);background:var(--bg3);border:1px solid var(--border2);padding:0.12rem 0.45rem;border-radius:4px;}
+    .status-tag{font-family:'DM Mono',monospace;font-size:0.7rem;padding:0.13rem 0.52rem;border-radius:4px;background:#fce7f3;border:1px solid #fbcfe8;color:#be185d;font-weight:500;}
+    .pub-links{display:flex;gap:0.5rem;flex-wrap:wrap;}
+    .plink{font-family:'DM Mono',monospace;font-size:0.72rem;padding:0.15rem 0.55rem;border:1.5px solid var(--border2);color:var(--accent);text-decoration:none;border-radius:5px;transition:all 0.15s;}
+    .plink:hover{background:var(--accent);color:white;border-color:var(--accent);}
+    .plink.pdf{border-color:var(--accent);}
+    .pub-note{font-size:0.82rem;color:var(--ink3);font-style:italic;margin-top:0.3rem;line-height:1.5;}
+
+    .empty-state{background:var(--bg2);border:1px dashed var(--border2);border-radius:var(--radius);padding:2rem;text-align:center;color:var(--ink3);font-size:0.9rem;}
+    .empty-state a{color:var(--accent);}
+
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity 0.55s ease,transform 0.55s ease;}
+    .reveal.visible{opacity:1;transform:none;}
+    .reveal-d1{transition-delay:0.1s;}.reveal-d2{transition-delay:0.2s;}.reveal-d3{transition-delay:0.3s;}.reveal-d4{transition-delay:0.4s;}
+
+    footer{background:var(--ink);color:#94a3b8;text-align:center;padding:2rem;font-size:0.8rem;font-family:'DM Mono',monospace;letter-spacing:0.03em;}
+    footer a{color:#94a3b8;text-decoration:none;}
+    footer a:hover{color:white;}
+
+    @media(max-width:600px){.pub-section-hdr h2{font-size:1.3rem;}.page-hero h1{font-size:2rem;}nav .nav-links{display:none;}}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a class="nav-brand" href="index.html">&#8592; Badal Gami</a>
+    <ul class="nav-links">
+      <li><a href="index.html#news">News</a></li>
+      <li><a href="index.html#interests">Research</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="publications.html" class="active">Publications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-eyebrow">Research Output</div>
+    <h1>Publications</h1>
+    <p>Peer-reviewed journals &middot; Conference papers &middot; Newsletters &middot; Preprints</p>
+    <div class="pub-stats-row">
+      <div class="pstat"><span class="n">2</span><span class="l">Journal Papers</span></div>
+      <div class="pstat"><span class="n">1</span><span class="l">Conference Papers</span></div>
+      <div class="pstat"><span class="n">1</span><span class="l">Newsletter / Article</span></div>
+      <div class="pstat"><span class="n">1</span><span class="l">Preprint</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- TOC -->
+  <div class="toc reveal">
+    <div class="toc-title">Jump to section</div>
+    <ul>
+      <li><a href="#journals">[J] Journal Articles</a></li>
+      <li><a href="#conferences">[C] Conference Papers</a></li>
+      <li><a href="#articles">[A] Newsletter &amp; Articles</a></li>
+      <li><a href="#preprints">[P] Preprints</a></li>
+    </ul>
+  </div>
+
+  <!-- ══ JOURNALS ══ -->
+  <section class="pub-section" id="journals">
+    <div class="pub-section-hdr reveal">
+      <h2>Journal Articles</h2>
+      <span class="pub-count">2 papers</span>
+    </div>
+
+    <div class="pub-entry reveal reveal-d1">
+      <div class="pub-id">[J1]</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1145/3764578" target="_blank">
+            Emerging Trends in Early Dementia Diagnosis: A Critical Analysis on Advanced Machine Learning Approaches
+          </a>
+        </div>
+        <div class="pub-authors">
+          <span class="me">B. Gami</span>, M. Agrawal, &amp; R. Katarya
+        </div>
+        <div class="pub-venue">ACM Computing Surveys, 2025</div>
+        <div class="pub-meta">
+          <span class="if-badge">IF 23.8</span>
+          <span class="year-tag">2025</span>
+          <div class="pub-links">
+            <a href="https://doi.org/10.1145/3764578" class="plink pdf" target="_blank">DOI &#8599;</a>
+            <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="plink" target="_blank">Scholar &#8599;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="pub-entry reveal reveal-d2">
+      <div class="pub-id">[J2]</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1002/ett.4824" target="_blank">
+            Artificial intelligence-based blockchain solutions for intelligent healthcare: A comprehensive review on privacy preserving techniques
+          </a>
+        </div>
+        <div class="pub-authors">
+          <span class="me">B. Gami</span>, M. Agrawal, D. K. Mishra, D. Quasim, &amp; P. S. Mehra
+        </div>
+        <div class="pub-venue">Transactions on Emerging Telecommunications Technologies, Volume 34, Issue 9, e4824, Wiley, 2023</div>
+        <div class="pub-meta">
+          <span class="if-badge">IF 3.6</span>
+          <span class="year-tag">2023</span>
+          <div class="pub-links">
+            <a href="https://doi.org/10.1002/ett.4824" class="plink pdf" target="_blank">DOI &#8599;</a>
+            <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="plink" target="_blank">Scholar &#8599;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ CONFERENCES ══ -->
+  <section class="pub-section" id="conferences">
+    <div class="pub-section-hdr reveal">
+      <h2>Conference Papers</h2>
+      <span class="pub-count">1 paper</span>
+    </div>
+
+    <div class="pub-entry reveal reveal-d1">
+      <div class="pub-id">[C1]</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://doi.org/10.1007/978-981-99-3761-5_17" target="_blank">
+            Feature Extractor Techniques for Alzheimer's Predictive Model in Brain Imaging
+          </a>
+        </div>
+        <div class="pub-authors">
+          <span class="me">B. Gami</span>, M. Agrawal, &amp; R. Katarya
+        </div>
+        <div class="pub-venue">International Conference on Information and Communication Technology for Intelligent Systems (ICTIS), 2023</div>
+        <div class="pub-meta">
+          <span class="year-tag">2023</span>
+          <div class="pub-links">
+            <a href="https://doi.org/10.1007/978-981-99-3761-5_17" class="plink pdf" target="_blank">DOI &#8599;</a>
+            <a href="https://scholar.google.com/citations?user=Z1w0e6YAAAAJ&hl=en" class="plink" target="_blank">Scholar &#8599;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ NEWSLETTER / ARTICLES ══ -->
+  <section class="pub-section" id="articles">
+    <div class="pub-section-hdr reveal">
+      <h2>Newsletter &amp; Articles</h2>
+      <span class="pub-count">1 article</span>
+    </div>
+
+    <div class="pub-entry reveal reveal-d1">
+      <div class="pub-id">[A1]</div>
+      <div>
+        <div class="pub-title">
+          <a href="https://www.cse.msu.edu/amdtc/amdnl/CDSNL-V18-N2.pdf" target="_blank">
+            Lack of Generalizability in Post-Selected Models
+          </a>
+        </div>
+        <div class="pub-authors">
+          <span class="me">B. Gami</span>
+        </div>
+        <div class="pub-venue">IEEE CDS Newsletter, Volume 18, Issue 2, 2024</div>
+        <div class="pub-meta">
+          <span class="year-tag">2024</span>
+          <div class="pub-links">
+            <a href="https://www.cse.msu.edu/amdtc/amdnl/CDSNL-V18-N2.pdf" class="plink pdf" target="_blank">PDF &#8599;</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══ PREPRINTS ══ -->
+  <section class="pub-section" id="preprints">
+    <div class="pub-section-hdr reveal">
+      <h2>Preprints</h2>
+      <span class="pub-count">1 preprint &middot; under review</span>
+    </div>
+
+    <div class="pub-entry reveal reveal-d1">
+      <div class="pub-id">[P1]</div>
+      <div>
+        <div class="pub-title">
+          Diffusion-Informed Imputation: On Tackling Missing Data Distributions in Physiological Signals from Wearable Sensors
+        </div>
+        <div class="pub-authors">
+          <span class="me">B. Gami</span>, Sikha
+        </div>
+        <div class="pub-venue">Pre-Print, 2024</div>
+        <div class="pub-meta">
+          <span class="status-tag">Under Review</span>
+          <span class="year-tag">2024</span>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<footer>
+  <p>&#169; <span id="yr"></span> Badal Gami &nbsp;&middot;&nbsp;
+    <a href="mailto:badalgami@gmail.com">badalgami@gmail.com</a> &nbsp;&middot;&nbsp;
+    <a href="index.html">&#8592; Back to Home</a>
+  </p>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+</script>
+</body>
+</html>
